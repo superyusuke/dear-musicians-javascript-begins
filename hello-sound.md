@@ -1,10 +1,21 @@
 # Hello Sound
 
-初めてプログラミング言語を学習する際には、よく「Hello World」と呼ばれるタイプのコードを書くことになる。
+初めてプログラミング言語を学習する際には、よく「Hello World」と呼ばれるタイプのコードを書くことになる。 "Hello World" とスクリーンに表示するプログラムだ。
 
-初めてプログラム言語を学習する際に、よく紹介されるのが「Hello World」と呼ばれるコードで、これを最初に書くことが多い。これは "Hello World" とスクリーンに表示するプログラムだ。
+しかし本書は音楽家のための本なので、"Hello Sound" アプリケーションを作ることにしよう。実行するとすぐに音がなるアプリケーションだ。
 
-しかし本書は Web Audio API を使ってサウンドを創造することを目的としているので、"Hello Sound" アプリケーションを作ることにしよう。実行するとすぐに音がなるアプリケーションだ。
+```javascript
+const audioContext = new AudioContext()
+const osc = audioContext.createOscillator()
+osc.type = 'sine'
+osc.frequency.value = 880
+osc.connect(audioContext.destination)
+osc.start()
+```
+
+このコードを実行すると、シンプルなサイン波が聞こえる。
+
+実行するためには、以下のリンクをクリックしてほしい。ブラウザが別ページを開いて、
 
 Demo \([https://codesandbox.io/s/zk178nl21p](https://codesandbox.io/s/zk178nl21p)\)
 
@@ -31,10 +42,7 @@ osc.connect(audioContext.destination)
 
 // oscillator を start = 再生 する
 osc.start()
-
 ```
-
-このコードを実行すると、シンプルなサイン波が聞こえる。
 
 
 
