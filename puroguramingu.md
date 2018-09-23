@@ -18,28 +18,47 @@ const audioContext = new AudioContext()
 
 その後ろに続く `=` を含む部分が、箱に値を入れる過程だ。`audioContext` という箱に、`=` 以降の値をしまってやろうとしている。何を入れるかと言えば、`new AudioContext()` の実行結果だ。この実行がなんなのかは少し難しいので後で詳しく説明することにしよう。とにかく今覚えてほしいのは、実行した結果が、`=` という記号のおかげで、`audioContext` という箱の中に吸い込まれて、しまわれるということだ。変数の箱に値をしまうためには、`=` を使う。この箱に値をしまう作業を「代入」という。
 
+### もっと簡単な例で
+
+上の例は少し難しかったので、もっと簡単な例を見てみよう。
+
+### 文字列\(String\)
+
+`'nakanishi'` は文字列を作っている。文字列は、まあ「文字だ」。
+
+### 数字\(Number\)
+
+`30` は数字を作っている。数字は、数字だ。
+
+大事なのは、文字を作る場合には `'文字'` のようにシングルクオートで囲む必要があるが、数字の場合は `30` のように、囲む必要がないということだ。シングルクオート\(`'`\)の有無で、文字列かそうでないかを見分けている。
+
 ```javascript
-// AudiocContext は Browser に組み込まれたオブジェクト
-// そのオブジェクトから new operator によって、
-// audioContext インスタンスを作成する
+// const で変数を宣言する
+const name = 'nakanishi'
+const age = 30
 
-// このインスンタンスが WebAudioAPI に関わる
-// 全ての操作のインターフェイス(入り口)となっている
-const audioContext = new AudioContext()
+// let でも変数を宣言することができる
+// (違いは後述)
+let name2 = 'sasaki'
+let age2 = 25
 
-// audioContext のメソッドを用いて、oscillator を作成する
-const osc = audioContext.createOscillator()
-
-// oscillator の波形を sine に変更する
-osc.type = 'sine'
-
-// oscillator の周波数(frequency)の値(value)を 880 に変更する
-osc.frequency.value = 880
-
-// oscillator を destination(目的地 = マスターアウトプットに接続する)
-osc.connect(audioContext.destination)
-
-// oscillator を start = 再生 する
-osc.start()
+// console.log(変数名) で
+// 変数の中身を見ることができる
+console.log(name)
+console.log(age)
+console.log(name2)
+console.log(age2)
 ```
+
+### let も変数を宣言するために用いる
+
+もう一つ `let` も `const` と同じく変数を宣言するために使用できる。違いは後述する。
+
+### console.log\(変数名\) で中身を表示する
+
+`console.log(変数名)` とすることで、変数の中身を見ることができる。下の画像を見てほしい。Console というタブに値が表示されている。下の小さい矢印\(&gt;\)をクリックすると、このタブが表示される。
+
+![](.gitbook/assets/screen-shot-2018-09-24-at-4.37.12-am.png)
+
+これで、変数\(variable\)、 変数の宣言に使う `const` と `let` 、それから文字列\(`'文字列'`\)、数字\(`30`\)を覚えた。
 
