@@ -1,6 +1,6 @@
 # Web Audio API
 
-サインは少しプログラミングの専門用語に慣れたところで、最初にサイン波を鳴らしたコードの、最初の部分を見ていこう。次の二行だ。
+少しプログラミングの専門用語に慣れたところで、最初にサイン波を鳴らしたコードの、最初の部分を見ていこう。次の二行だ。
 
 ```javascript
 const audioContext = new AudioContext()
@@ -45,9 +45,9 @@ const osc = audioContext.createOscillator()
 audioContext.createOscillator()
 ```
 
-#### Oscillator に値を設定する
+### Oscillator に値を設定する
 
-さて、3 行目から 4行目は、oscillator の設定をしている。見た通りだが、3 行目では oscillator の波形を
+さて、3 行目から 4行目は、oscillator の設定をしている。見た通りだが、3 行目では oscillator の波形をサイン波にしている。4 行目は周波数を 880 Hz に設定している。`audioContext.createOscillator()` の場合には `audioContext` に頼んでいるわけだが、今回は `osc` に頼んでいる。
 
 ```javascript
 const audioContext = new AudioContext()
@@ -58,17 +58,36 @@ osc.connect(audioContext.destination)
 osc.start()
 ```
 
+`audioContext.createOscillator()` の場合は、それによって作られたものを変数に収納するように注意を促したが、今回の `osc.type` と `osc.frequency.value` ではその結果を変数にしまっていないが、いいのだろうか。結論から言えばこれで良い。
+
+DAW に例えるのであれば、Synth を作ったときには新たなものができるが、Synth の波形や周波数を変更する場合には、特に新しいものはできない。あくまで今あるものの設定を変更しているからだ。だから変数にしまう必要はない。
+
+### audioContext.destination と connect
+
+さて次に進もう。次のコードの 1 行目は、`osc` を `audioContext.destination` に `connect` \(接続\) している。`audioContext.destination` はなんだろう？
+
 ```javascript
-// AudiocContext は Browser に組み込まれたオブジェクト
-// そのオブジェクトから new operator によって、
-// audioContext インスタンスを作成する
-
-// このインスンタンスが WebAudioAPI に関わる
-// 全ての操作のインターフェイス(入り口)となっている
-const audioContext = new AudioContext()
-
-// audioContext のメソッドを用いて、oscillator を作成する
-const osc = audioContext.createOscillator()
-
+osc.connect(audioContext.destination)
+osc.start()
 ```
+
+これは DAW でいえば、最終出力先だ。各トラックをこの出力先につなげることで、音が聞こえる。もしここにつながっていなければ、トラックで再生した音は聞こえない。それが `audioContext.destination` だ。`osc` を最終出力先につなげてあげなくては、再生しても音は聞こえない。
+
+### osc.start\(\) でオシレーターを再生する
+
+やっとこれで音が出る。`audioContext` から作成した `osc` に波形と周波数を設定して、最終出力先の `audioContext.destination` に `connect` したので、最後に `.start()` を `osc` にお願いしよう！
+
+```javascript
+osc.start()
+```
+
+880 Hz のサインはが再生された。
+
+### 少なくとも意味はわかった
+
+ここまでで少なくともコードの意味はわかったはずだ。
+
+でも、`.` でつなぐことで JavaScript のプログラミングとしては、正確には何をしているんだろうか。`new` もなんのためにあって、何をしているのだろう。
+
+この疑問に応えるためには、Object, Class, Construnctor について理解する必要がある。
 
