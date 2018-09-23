@@ -37,7 +37,7 @@ DAW.createSynth()
 const osc = audioContext.createOscillator()
 ```
 
-繰り返しになるが audioContext に頼んで oscillator を作ってもらい、それが `osc` という変数にしまわれた。DAW の場合と少し違うのは、DAW であれば作ったものは DAW の中にしまわれるが、`audioContext` の場合はそうではなくて、作られたものをしっかり変数にしまってあげなくてはいけないということだ。
+繰り返しになるが audioContext に頼んで oscillator を作ってもらい、それが `osc` という変数にしまわれた。DAW の場合と少し違うのは、DAW であれば作ったものは DAW の中にしまわれるが、`audioContext` の場合はそうではなくて、作られたものをしっかり変数に\(ここでは `osc` に\)しまってあげなくてはいけないということだ。
 
 単に次のように実行しただけでは、oscillator は作成されるが、作成されたものは空中に消えてしまう。これではダメだ。変数にしっかり収納しよう。
 
