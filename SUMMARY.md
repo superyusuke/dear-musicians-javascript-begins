@@ -4,4 +4,5 @@
 * [Hello Sound](hello-sound.md)
 * [変数\(variable\)](puroguramingu.md)
 * [Web Audio API](web-audio-api.md)
+* [コードは文字から成る](object.md)
 

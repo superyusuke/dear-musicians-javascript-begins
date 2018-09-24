@@ -89,5 +89,5 @@ osc.start()
 
 でも、`.` でつなぐことで JavaScript のプログラミングとしては、正確には何をしているんだろうか。`new` もなんのためにあって、何をしているのだろう。
 
-この疑問に応えるためには、Object, Class, Construnctor について理解する必要がある。
+この疑問に応えるためには、Object, Class, Construnctor 等、JavaScript の基礎的なことについて理解する必要がある。
 
